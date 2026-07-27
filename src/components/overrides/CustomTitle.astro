@@ -1,0 +1,51 @@
+---
+// src/components/CustomTitle.astro
+const { title } = Astro.locals.starlightRoute.entry.data;
+const words = title.split(' - ');
+const phrase = words[0]
+const phraseType = words[1]
+const media = words?.length === 3 ? words[2] : null;
+---
+<style>
+  /* Target the specific substring using CSS :contains is not standard, 
+     so we rely on the structure or add a data attribute if possible. 
+     Alternatively, wrap the specific word in a span if you control the frontmatter 
+     or use a global style that targets the h1. */
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  /* If you need to target a specific word, you might need to modify 
+     the title string in the component or use a global CSS approach */
+  .custom-highlight {
+    color: blue;
+  }
+</style>
+
+<h1 data-pagefind-ignore="all" id="_top" class="flex gap-6 justify-between items-start sm:items-center bg-teal-200 dark:bg-zinc-800 px-2 rounded-md shadow-xl dark:shadow-rose-100/10">
+  <span class="font-extrabold text-2xl">
+    { phrase }
+  </span>
+  { words?.length > 1 &&
+  <div class="flex flex-col justify-between sm:justify-end items-center gap-4 sm:flex-row">
+    <span class="font-extrabold text-xl text-orange-500">
+      ({phraseType})
+    </span>
+    {
+      (media != null && media?.length > 0) && 
+        <span>
+          {media}
+        </span>
+    }    
+  </div>
+  }
+</h1>   
+
+<h1 data-pagefind-meta="title" class="hidden">
+  <span>{ phrase } ({phraseType})</span>
+  {
+    (media != null && media?.length > 0) && 
+      <span> {'   '+media}</span>
+  }
+</h1>

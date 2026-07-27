@@ -1,0 +1,206 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import AnchorHeading from '@astrojs/starlight/components/AnchorHeading.astro';
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import MediaContainer from '../../components/vue/MediaContainer.vue';
+
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+	const phrases = await getCollection('phrase');
+	return phrases.map((phrase) => ({
+		params: { slug: phrase.id },
+		props: phrase,
+	}));
+}
+type Props = CollectionEntry<'phrase'>;
+
+const phrase = Astro.props;
+const { name, type, meanings, origin, extraDetails} = phrase.data;
+
+const getPhraseType = (type: number|undefined) => {
+	switch (type) {
+		case 0 : return 'Phrasal verb';
+		case 1 : return 'Idiom';
+		default: return 'Phrase'
+	}
+}
+const isMedia = () => {
+	const meaningsWithMedia = meanings.filter(meaning => {
+		return meaning.media && meaning.media.length > 0
+	})
+
+	return meaningsWithMedia.length > 0
+}
+
+let title = name + ' - ' + getPhraseType(type);
+if (isMedia() === true) {
+	title = title + ' - 🎞'
+} 
+
+const extraDetailsInfo = getExtraDetails();
+
+function getExtraDetails() {
+  if (extraDetails?.length == 0) {
+    return []
+  }
+  if (extraDetails == undefined && origin?.length) {
+    const extraInfo = [["Origin", [origin]]]
+    return extraInfo;
+  } 
+  if (extraDetails && extraDetails.length > 0) {
+    return extraDetails
+  }
+  return []
+}
+
+// TOC headers initialization
+const tocHeadings = [];
+tocHeadings.push({depth: 2, slug: 'phrase-meaning', text: 'Meanings'});
+if (extraDetailsInfo?.length) {
+	tocHeadings.push({depth: 2, slug: 'addl-info', text: 'Extra Details - Usage, Origin, etc'});
+}
+
+---
+
+<script>
+	const baseColors = [
+		'indigo', 'purple', 'DarkMagenta', 'red', 
+		'OrangeRed', 'MediumVioletRed', 'DarkSlateBlue',
+		'green', 'crimson', 'DarkSlateGray', 'maroon'
+	]
+
+	const getInitBaseColor = () => baseColors[Math.floor(Math.random() * baseColors.length)];
+	const getColorOffset = (total: number, index: number) => {
+		const middleIndex = Math.floor(total/2-1)
+		return (middleIndex - index) * 0.05;
+	}
+
+	const meanings = document.querySelectorAll('.examples-container');
+	let totalMeanings = meanings.length;
+	for (let m = 0; m < totalMeanings; m++) {
+		const examplesParentEl = meanings[m] as HTMLElement;
+		const examples = examplesParentEl.querySelectorAll('.example');
+		const initBaseColor = getInitBaseColor();
+		let total = examples.length;
+		for (let i = 0; i < total; i++) {
+			const el = examples[i] as HTMLElement;
+			const bgColor = `oklch(from ${initBaseColor} calc(l + ${getColorOffset(total, i)}) c h)`
+			el.style.backgroundColor = bgColor;
+			el.style.color = `contrast-color(${bgColor})`
+		}
+	}
+	
+	const addlInfoColors = [
+		// ExtradDetailName , ExtradDetailBackground, ExtradDetailForeground
+		['#c80e13', '#fceed1', 'DarkGreen'],
+		['#ff414e', '#ffde22', 'black'],
+		['yellow', 'DarkGray', 'black'],
+		['deeppink', '#00DDFF', 'black'],
+		['#00246B', '#CADCFC', 'black'],
+		['DimGray', '#EBE9E1', '#E43D12'],
+		['#FF6B6B', '#0E1B2A', '#E9F5FF'],
+		['DimGray', '#FDE68A', '#E11D48'],
+		['orange', '#3A506B', 'white'],
+		['#F97316', '#1E1B4B', '#FDE68A'],
+	]
+
+	const getExtraDetailsBaseColor = () => addlInfoColors[Math.floor(Math.random() * addlInfoColors.length)];
+	
+	const extraDetailsEl = document.querySelectorAll('.extra-detail');
+	const totalExtraDetails = extraDetailsEl.length;
+	for (let i = 0; i < totalExtraDetails; i++) {
+		const el = extraDetailsEl[i] as HTMLElement;
+		const extraDetailNameEl = el.querySelector('.extra-detail-name') as HTMLElement;
+		const bgColor = getExtraDetailsBaseColor();
+		extraDetailNameEl.style.color = bgColor[0]
+		
+		el.style.backgroundColor = bgColor[1];
+		el.style.color = `contrast-color(${bgColor[0]})`
+		el.style.color = bgColor[2];
+	}
+</script>
+
+<StarlightPage 
+	frontmatter={{ title: title, tableOfContents: false }}
+	hasSidebar={false}
+	headings={tocHeadings}
+>
+  <main>
+		<div data-pagefind-ignore="all">
+		<div class="flex justify-between items-center">
+			<AnchorHeading level="4" id="phrase-meaning">Meanings</AnchorHeading>
+			{
+				extraDetailsInfo?.length > 0 && (
+					<a class="text-xl font-semibold m-0" href="#addl-info">Extra Details</a>
+				)
+			}
+		</div>
+		
+		<Tabs>
+		{meanings.map((meaning, index) => (
+			<TabItem label={String(index+1) + (meaning.media && meaning.media?.length > 0 ? ' 🎞' : '')} >
+				<div class="p-1 rounded-xl border-solid border-4 border-teal-500 text-gray-900 shadow-xl bg-teal-50">
+			
+				<div>
+					<p class="item text-xl font-bold">{meaning.name}</p>
+				</div>
+				
+				<section class="item flex flex-col gap-1 examples-container">
+					<p class="text-lg text-blue-900 font-bold">
+						Example Sentences:
+					</p>
+					{
+						meaning.examples?.map((example, index) => (
+							<p data-allow-mismatch
+								class="example leading-normal italic text-xl font-semibold rounded-md shadow-xl dark:shadow-gray-200/10 m-1 p-2 bg-orange-600 text-white" 
+							>
+								{ index+1 }. { example }
+							</p>
+						))
+					}
+				</section>
+				<MediaContainer media-list={meaning.media} client:load/>
+				</div>
+			</TabItem>
+			
+		))}
+		</Tabs>
+		{
+			extraDetailsInfo?.length > 0 && (
+				<section class="text-xl text-orange-600 font-bold">
+					<AnchorHeading level="4" id="addl-info">Additiona Details</AnchorHeading>
+				</section>
+				<ul class="list-none m-0 p-0 pt-4">
+					{
+						extraDetailsInfo.map(extraDetail => (
+							<li class="extra-detail italic text-lg font-semibold rounded-xl p-2 ml-2  mb-4 shadow-2xl dark:shadow-gray-200/20"
+              >
+								<p class="mb-2"><strong class="font-bold text-xl extra-detail-name">{extraDetail[0]} </strong></p>
+								<ul class="list-disc ml-4 p-0">
+									{
+									(extraDetail[1]).map(detail => (
+										<li>{ detail }</li>
+									))}
+								</ul> 
+							</li>
+						
+					))}
+				</ul>
+		)}
+		</div>
+	</main>
+</StarlightPage>
+
+<style>
+	.item {
+    padding-block-end: 0.25rem;
+    border-bottom: 2px solid #d1d5db;
+  }
+	
+	#addl-info {
+		font-weight: bold;
+		color: orangered;
+	}
+</style>

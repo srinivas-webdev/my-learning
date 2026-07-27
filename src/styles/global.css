@@ -4,14 +4,116 @@
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/utilities.css' layer(utilities);
 
+
 @theme {
-	/*
-	Configure your Tailwind theme that will be used by Starlight.
-	https://starlight.astro.build/guides/css-and-tailwind/#styling-starlight-with-tailwind
-	*/
+  /* Your preferred text font. Starlight uses a system font stack by default. */
+  --font-sans: 'Atkinson Hyperlegible';
+  /* Your preferred code font. Starlight uses system monospace fonts by default. */
+  --font-mono: 'IBM Plex Mono';
+  /* Your preferred accent color. Indigo is closest to Starlight’s defaults. */
+  /* Generated accent color palettes. */
+--color-accent-200: #c0c7e6;
+--color-accent-600: #404697;
+--color-accent-900: #292f53;
+--color-accent-950: #1e2239;
+/* Generated gray color palettes. */
+--color-gray-100: #f8f4fb;
+--color-gray-200: #f2eaf8;
+--color-gray-300: #c7bece;
+--color-gray-400: #9683a3;
+--color-gray-500: #61506d;
+--color-gray-700: #41304c;
+--color-gray-800: #2f1f39;
+--color-gray-900: #1c1521;
 }
 
 /*
 Add additional Tailwind styles to this file:
 https://tailwindcss.com/docs/adding-custom-styles#using-custom-css
 */
+
+/*
+#starlight__search {
+  //Scale the entire search UI, including font sizes 
+  --pagefind-ui-scale: 1; 
+  
+  //Optional: Adjust specific font weights or sizes if needed via nested selectors 
+  --pagefind-ui-text: var(--sl-color-gray-2);
+  --pagefind-ui-primary: var(--sl-color-text);
+	
+}   
+*/
+
+site-search > button {
+	font-weight: bold;
+}
+
+site-search > button > svg {
+  color: white;
+}
+
+.pagefind-ui__result-nested {
+  display: none;
+}
+
+.pagefind-ui__result-excerpt {
+  display: none;
+}
+
+.header {
+  z-index: var(--sl-z-index-navbar);
+  position: fixed;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  width: 100%;
+  height: var(--sl-nav-height);
+  padding: var(--sl-nav-pad-y) var(--sl-nav-pad-x);
+  box-shadow: rgb(47, 53, 60) 0px 15px 10px -10px;
+  background:linear-gradient(to right,rgb(0 0 0 / 70%), rgb(176 176 176 / 70%), rgb(0 0 0 / 70%));
+  color: white;
+  backdrop-filter: blur(0.25rem);
+}
+
+.site-title {
+  color: skyblue;
+}
+
+:root[data-theme='light'] {
+  starlight-theme-select {
+    background-color: skyblue;
+    border-radius: 0.5rem;
+  }
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0;
+}
+
+.my-card .sl-link-card{
+  background-color: papayawhip;
+  border-radius: 15px;
+  border-color: none;
+  box-shadow: var(--shadow-2xl);
+  font-weight: bolder;
+  font-size: large;
+
+  .title {
+    font-size: x-large;
+    color: darkorchid;
+  }
+
+  .description {
+    color: darkolivegreen;
+    font-weight: bold;
+  }
+}
+
+.my-card2 article{
+  background-color: rgba(255, 64, 0, 0.5);
+  border-radius: 15px;
+  border-color: none;
+  box-shadow: var(--shadow-2xl);
+  font-weight: bolder;
+}
