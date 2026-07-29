@@ -1,0 +1,91 @@
+[
+  {
+    "name": "Tag Endings - Did, Do, Does",
+    "items": [
+      ["Didn't I?", "డిడినై"],
+      ["Did you?", "డిజ్యూ"],
+      ["Didn't you?", "డింట్యూ, డించ్యూ"],
+      ["Did he?", "డిడీ"],
+      ["Didn't he?", "డిడినీ"],
+      ["Did she?", "డిజ్షీ"],
+      ["Didn't she?", "డిడిన్షీ"],
+      ["Don't I?", "డోనై"],
+      ["Don't you?", "డోంచ్యూ"],
+      ["Don't they?", "డోన్‌దే"],
+      ["Does he?", "డజీ"],
+      ["Doesn't he?", "డజనీ"],
+      ["Doesn't she?", "డజన్షీ"],
+      ["Doesn't it?", "డజనిట్"],
+      ["Do I?", "డ్వై"],
+      ["Do we?", "డ్వీ"]
+    ]
+  },
+  {
+    "name": "Tag Endings - Will, Would",
+    "items": [
+      ["Won't I?", "వ్వోనై"],
+      ["Won't you?", "వ్వోంచ్యూ"],
+      ["Won't he?", "వ్వోనీ"],
+      ["Won't we?", "వ్వోన్-వుయ్"],
+      ["Will he?", "వ్విల్లీ"],
+      ["Would you?", "వ్వుజ్యూ"],
+      ["Wouldn't you?", "వ్వుడుంచ్యూ"],
+      ["Would he?", "వ్వుడీ"],
+      ["Wouldn't he?", "వ్వుడినీ"]
+    ]
+  },
+  {
+    "name": "Tag Endings - Can, Could",
+    "items": [
+      ["Can't you?", "కేంచ్యూ"],
+      ["Can't he?", "కేనీ"],
+      ["Could you?", "కుజ్యూ"]
+    ]
+  },
+  {
+    "name": "Tag Endings - Should",
+    "items": [
+      ["Shouldn't I?", "షుడునై"]
+    ]
+  },
+  {
+    "name": "Tag Endings - Is, Was, Has, Have",
+    "items": [
+      ["Is he?", "ఇజీ-Izzy"],
+      ["Isn't he?", "ఇజనీ"],
+      ["Isn't it?", "ఇజనిట్"],
+      ["Was he?", "వ్వజీ-wazzy"],
+      ["Has he?", "హేజీ"],
+      ["Hasn't he?", "హేజనీ"],
+      ["Haven't you?", "హేవంచ్యూ"],
+      ["Aren't I?", "ఆరనై"]      
+    ]
+  },
+  {
+    "name": "what",
+    "items": [
+      ["What do you", "వ్వాడయ"],
+      ["What did you", "వ్వాజ్యూ"],
+      ["What did your", "వ్వాజ్యుర్"],
+      ["What does he", "వ్వాడిజ్జీ"]
+    ]
+  },
+  {
+    "name": "why",
+    "items": [
+      [
+        "Why do you", "వైజ్యూ"
+      ]
+    ]
+  },
+  {
+    "name": "colloquial-other",
+    "items": [
+      ["got to", "గాడ"],
+      ["got a", "గాడ"],
+      ["want to", "వ్వాన"],
+      ["want a", "వ్వాన"],
+      ["let me", "లెమ్మి"]
+    ]
+  }  
+]

@@ -117,3 +117,11 @@ site-search > button > svg {
   box-shadow: var(--shadow-2xl);
   font-weight: bolder;
 }
+
+sl-sidebar-state-persist ul.top-level > li {
+  font-weight: bolder;
+}
+
+starlight-toc li {
+  font-weight: bolder;
+}

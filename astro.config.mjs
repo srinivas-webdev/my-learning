@@ -22,12 +22,12 @@ export default defineConfig({
                 label: 'Contractions',
                 items: [
                     // Each item here is one entry in the navigation menu.
-                    { label: 'Example Guide', slug: 'contractions/wh-contractions' },
+                    { label: 'Telugu', slug: 'contractions/telugu' },
                 ],
             },
             {
-                label: 'Reference',
-                items: [{ autogenerate: { directory: 'reference' } }],
+                label: 'Reductions',
+                items: [{ autogenerate: { directory: 'reductions' } }],
             },
         ],
         customCss: ['./src/styles/global.css'],

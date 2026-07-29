@@ -1,0 +1,48 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import AnchorHeading from '@astrojs/starlight/components/AnchorHeading.astro';
+
+import categories from '../../data/contractions.json'
+import '../../styles/global.css';
+
+const title = 'Contractions pronunciations in Telugu'
+
+// TOC headers initialization
+const tocHeadings = categories.map((category, index) => (
+	{depth: 2, slug: 'category-'+(index+1), text: category.name}
+))
+---
+
+<StarlightPage 
+	frontmatter={{ title: title, tableOfContents: true }}
+	hasSidebar={true}
+	headings={tocHeadings}
+>
+  <main>
+		{
+			categories.map((category, index) => (
+				<h2 id={'category-'+(index+1)} class="font-bold text-xl dark:text-gray-700 p-2 bg-purple-200 rounded-md">{ category.name }</h2>
+				<table class="table-fixed px-2 pb-1 text-xl font-bold border-separate">
+          <tbody>
+					{
+						category.items.map((item) => 
+							<tr class="mx-4 px-2">
+								<td 
+									class="bg-orange-100 dark:text-gray-500 rounded-md shadow-md px-2 m-2"
+								>
+                { item[0] }
+              </td>
+              <td 
+                class="bg-sky-200 dark:text-gray-500 rounded-md shadow-md px-2"
+              >
+                {item[1] }
+              </td>
+							</tr>
+						)
+          } 
+           </tbody>
+        </table>
+			))
+		}
+	</main>
+</StarlightPage>

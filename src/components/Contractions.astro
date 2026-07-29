@@ -1,0 +1,9 @@
+---
+import categories from '../data/contractions.json'
+---
+
+{
+  categories.map((category, index) => (
+    <h2 id={'category-'+(index+1)} class="font-medium text-xl">{ category.name }</h2>
+  ))
+}
