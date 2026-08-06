@@ -125,3 +125,7 @@ sl-sidebar-state-persist ul.top-level > li {
 starlight-toc li {
   font-weight: bolder;
 }
+
+.sl-container {
+  margin: 0px;
+}

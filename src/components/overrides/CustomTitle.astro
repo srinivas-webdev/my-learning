@@ -29,9 +29,14 @@ const media = words?.length === 3 ? words[2] : null;
   </span>
   { words?.length > 1 &&
   <div class="flex flex-col justify-between sm:justify-end items-center gap-4 sm:flex-row">
-    <span class="font-extrabold text-xl text-orange-500">
-      ({phraseType})
-    </span>
+    {
+      (phraseType?.length > 0) && (phraseType.trim().length > 0) && (
+        <span class="font-extrabold text-xl text-orange-500">
+          {phraseType}
+        </span>
+      )
+    }
+    
     {
       (media != null && media?.length > 0) && 
         <span>
@@ -43,7 +48,14 @@ const media = words?.length === 3 ? words[2] : null;
 </h1>   
 
 <h1 data-pagefind-meta="title" class="hidden">
-  <span>{ phrase } ({phraseType})</span>
+  <span>{ phrase }</span>
+  {
+    (phraseType?.length > 0) && (phraseType.trim().length > 0) && (
+      <span>
+        {' ('+phraseType+')'}
+      </span>
+    )
+  }
   {
     (media != null && media?.length > 0) && 
       <span> {'   '+media}</span>

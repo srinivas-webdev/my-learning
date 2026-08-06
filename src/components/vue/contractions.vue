@@ -1,10 +1,8 @@
 <script setup>
 import categories from '../../data/contractions.json'
-console.log('categories', categories);
 let openedPanel = null
 
 const onClickAccordion = (e) => {
-  console.log('clicked')
   const activePanelButton = e.target.closest("button");
   if (!activePanelButton) return;
   if (openedPanel && openedPanel !== activePanelButton) {
