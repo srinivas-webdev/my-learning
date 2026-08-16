@@ -38,6 +38,15 @@ export default defineConfig({
                                     { label: 'Adjective Clauses - Sentence relatives', slug: 'daily-english/others/clauses/sentence-relatives' },
                                 ]
                             },
+                            {
+                                label: 'grammar',
+                                collapsed: true,
+                                items: [
+                                    { label: 'Adjectives after Indefinite Pronouns', slug: 'daily-english/others/grammar/adjective-after-indefinte-pronoun' },
+                                    { label: 'Linking Verbs', slug: 'daily-english/others/grammar/linking-verbs' },
+                                    { label: 'Linking Verbs - Be', slug: 'daily-english/others/grammar/sentence-with-be' },
+                                ]
+                            },
                         ]
                     }
                 ],
