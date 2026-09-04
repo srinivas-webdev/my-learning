@@ -45,6 +45,7 @@ export default defineConfig({
                                     { label: 'Adjectives after Indefinite Pronouns', slug: 'daily-english/others/grammar/adjective-after-indefinte-pronoun' },
                                     { label: 'Linking Verbs', slug: 'daily-english/others/grammar/linking-verbs' },
                                     { label: 'Linking Verbs - Be', slug: 'daily-english/others/grammar/sentence-with-be' },
+                                    { label: 'Intransitive Verbs', slug: 'daily-english/others/grammar/intransitive-verbs' },
                                 ]
                             },
                         ]
